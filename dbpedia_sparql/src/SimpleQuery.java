@@ -1,9 +1,13 @@
+import java.io.IOException;
+
 import com.hp.hpl.jena.query.*;
 public class SimpleQuery {
 	/**
 	 * @param args
+	 * @throws IOException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+			/*
 		        String s2 = "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT ?label " +
 							"WHERE { " +
 							"<http://dbpedia.org/resource/Quatre_Bornes> <http://dbpedia.org/ontology/country> ?y ." +
@@ -14,5 +18,8 @@ public class SimpleQuery {
 		        QueryExecution qExe = QueryExecutionFactory.sparqlService( "http://dbpedia.org/sparql", query );
 		        ResultSet results = qExe.execSelect();
 		        ResultSetFormatter.out(System.out, results, query) ;
+		    */
+			TestSparql test = new TestSparql();
+			test.testOnLocalFile();
 		}
 	}

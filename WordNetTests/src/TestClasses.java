@@ -24,6 +24,7 @@ import edu.sussex.nlp.jws.Resnik;
 public class TestClasses {
 	IDictionary dict;
 	public TestClasses(){
+		
 		URL url;
 		try {
 			url = new URL ( "file" , null , "files/ontologies/dictionary/3.0/dict" );
@@ -58,7 +59,7 @@ public class TestClasses {
 			for ( ISynsetID sid : hyponyms ) {
 				List < IWord > words = dict.getSynset(sid).getWords();
 				for ( Iterator <IWord> i = words.iterator();i.hasNext();) {
-					System.out.println(i.next().getLemma());
+					System.out.print(" "+i.next().getLemma()+" ");
 				}
 			}
 			System.out.println();
@@ -67,20 +68,47 @@ public class TestClasses {
 		
 	}
 	
+	
+	public void printAllSynonyms(String word){
+		//loading the dictionary
+		URL url;
+		try {
+			url = new URL ( "file" , null , "files/ontologies/dictionary/3.0/dict" );
+			dict = new Dictionary ( url ) ;
+			dict.open();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		
+		//get the synsets
+		IIndexWord synsets = dict.getIndexWord(word, POS.NOUN);
+		//iterate over the synsets
+		for (IWordID wordId:synsets.getWordIDs()){
+			System.out.println("Synset #"+synsets.getWordIDs().indexOf(wordId));
+			IWord words = dict.getWord(wordId);
+			for ( IWord w : words.getSynset().getWords() ){
+				System.out.print(w.getLemma()+" , ");
+			}
+			System.out.println();
+			System.out.println();
+		}
+	}
 	void testWordNetSimilarity(){
+		
 		JWS	ws = new JWS("files/ontologies/dictionary", "3.0");
 		
 		JiangAndConrath jcn = ws.getJiangAndConrath();
 		Resnik res = ws.getResnik();
 		
-		TreeMap<String, Double> scores1 = ws.getLeacockAndChodorow().lch("apple", "computer", "n");
+		TreeMap<String, Double> scores1 = ws.getLeacockAndChodorow().lch("test", "mental_testing", "n");
 		for(Entry<String, Double> e: scores1.entrySet())
 		    System.out.println(e.getKey() + "\t" + e.getValue());
 	}
 	
-	void testWordNetStemming(){
+	void testWordNetStemming(String text){
 		WordnetStemmer wordnetStemmer = new WordnetStemmer(dict);
-		wordnetStemmer.findStems("countries", POS.NOUN);
-		System.out.println(wordnetStemmer.findStems("countries", POS.NOUN));
+		//wordnetStemmer.findStems("countries", POS.NOUN);
+		System.out.println(wordnetStemmer.findStems(text));
 	}
+	
 }
