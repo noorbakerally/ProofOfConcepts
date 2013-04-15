@@ -1,0 +1,25 @@
+<root>
+    <elm>
+        <elm>Common content</elm>
+
+        <elm xmlns="http://example.org/ns">
+            <elm lang="en">Content EN</elm>
+            <elm lang="cs">žluťoučký koníček</elm>
+        </elm>
+
+        <elm xml:id="abc123">Common content</elm>
+
+        <elm lang="en">Content EN</elm>
+        <elm lang="cs">Content CS</elm>
+
+        <elm lang="en">
+            <elm>Content EN</elm>
+            <elm>Content EN</elm>
+        </elm>
+
+        <elm lang="cs">
+            <elm>Content CS</elm>
+            <elm>Content CS</elm>
+        </elm>
+    </elm>
+</root>

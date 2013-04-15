@@ -1,0 +1,1 @@
+ls -d $PWD/* | awk '{print "python " "/home/noor/Downloads/TOSend/scripts/removeUnusedTags.py \042"$1"\042"}'

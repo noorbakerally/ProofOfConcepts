@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queries>
+	<queryDetails>
+		<description>Find all photos that shows someone jumping somewhere in UK</description>
+		<expectedResults>
+			<resourceName>photo1</resourceName>
+			<resourceName>photo2</resourceName>
+		</expectedResults>
+		<MAs>
+			<MA ma-id="1"><query>uk jump</query></MA>
+			<MA ma-id="2"><query>uk jump</query></MA>
+		</MAs>
+	</queryDetails>
+</queries>

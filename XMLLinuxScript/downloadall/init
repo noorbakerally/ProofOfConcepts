@@ -1,0 +1,2 @@
+touch owl1
+python script.py $1 

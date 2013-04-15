@@ -1,0 +1,2 @@
+awk '{print "wget http://www.bbc.co.uk/nature/life/"$1 }'
+

@@ -1,0 +1,34 @@
+<queries>can
+	<queryDetails>
+		<description>Find all photos that shows someone jumping somewhere in UK</description>
+		<expectedResults>
+			<resourceName>photo1</resourceName>
+			<resourceName>photo2</resourceName>
+		</expectedResults>
+		<MAs>
+			<MA ma-id="1">
+				<query>uk jump</query>
+				<actualResults>
+					<resourceName>photo1</resourceName>
+				</actualResults>
+				<evaluationMetrics>
+					<recall>0.5</recall>
+					<precision>1</precision>
+				</evaluationMetrics>
+			</MA>
+			<MA>
+				<query>uk jump</query>
+				<actualResults>
+					<resourceName>photo1</resourceName>
+					<resourceName>photo2</resourceName>
+					<resourceName>photo3</resourceName>
+					<resourceName>photo4</resourceName>
+				</actualResults>
+				<evaluationMetrics>
+					<recall>1</recall>
+					<precision>0.5</precision>
+				</evaluationMetrics>
+			</MA>
+		</MAs>
+	</queryDetails>
+</queries>

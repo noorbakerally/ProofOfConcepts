@@ -1,0 +1,1 @@
+ls -d $PWD/* | awk '{print "python /home/noor/Dropbox/TaggingCaseStudy/ontology/bbcOntology/scripts/removeDescription.py "$1}' | /bin/bash

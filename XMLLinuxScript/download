@@ -1,0 +1,5 @@
+filename=$1
+if [ ! -f $1 ];
+then
+	wget -q http://www.bbc.co.uk/nature/life/${filename}.rdf
+fi

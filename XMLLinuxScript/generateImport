@@ -1,0 +1,1 @@
+ls -d $PWD/* | awk '{print "<owl:imports rdf:resource=\042file:"$1"\042/>" }'

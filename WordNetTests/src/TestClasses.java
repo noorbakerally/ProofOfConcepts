@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ import edu.sussex.nlp.jws.Resnik;
 
 public class TestClasses {
 	IDictionary dict;
+	public List <String> hyps = new ArrayList<String>();
 	public TestClasses(){
 		
 		URL url;
@@ -48,7 +50,6 @@ public class TestClasses {
 		}
 		
 		IIndexWord idxWord = dict.getIndexWord (currentWord, POS.NOUN );
-		
 		System.out.println("Hyponyms:");
 		//expanding the query
 		for (IWordID wordID:idxWord.getWordIDs()){	
@@ -64,9 +65,32 @@ public class TestClasses {
 			}
 			System.out.println();
 		}
-		
-		
 	}
+	
+	void getOnlyHyponyms(String currentWord) throws IOException{
+		IIndexWord idxWord = dict.getIndexWord (currentWord, POS.NOUN );
+		if (idxWord==null) return;
+		//expanding the query
+		for (IWordID wordID:idxWord.getWordIDs()){	
+			IWord word = dict.getWord(wordID);
+			ISynset synset = word.getSynset();
+					
+			List < ISynsetID > hyponyms =synset.getRelatedSynsets(Pointer.HYPONYM);
+			for ( ISynsetID sid : hyponyms ) {
+				List < IWord > words = dict.getSynset(sid).getWords();
+				for ( Iterator <IWord> i = words.iterator();i.hasNext();) {
+					String currentHyponym = i.next().getLemma();
+					//System.out.println(currentHyponym);
+					//String commands []  ={"bash","-c","echo '"+currentHyponym+"' >> /home/noor/hyps"};
+					//Runtime.getRuntime().exec(commands);
+					hyps.add(currentHyponym);
+					getOnlyHyponyms(currentHyponym);
+				}
+			}
+		}
+	}
+	
+	
 	
 	
 	public void printAllSynonyms(String word){
